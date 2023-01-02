@@ -1,4 +1,4 @@
-# Eris
+# Eris: the ultimate launcher and updater for NosTale private servers.
 
 Welcome to Eris!
 
