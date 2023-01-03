@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErisLib", "ErisLib\ErisLib.csproj", "{6825D335-97DB-417D-8FD7-1946BBB65935}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErisUi", "ErisUi\ErisUi.csproj", "{4FE5218D-B66B-4D50-A603-C87462C686D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErisUi", "ErisUi\ErisUi.csproj", "{4FE5218D-B66B-4D50-A603-C87462C686D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErisTests", "ErisTests\ErisTests.csproj", "{B1934B01-5A58-4494-831C-C35F276939CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{4FE5218D-B66B-4D50-A603-C87462C686D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FE5218D-B66B-4D50-A603-C87462C686D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FE5218D-B66B-4D50-A603-C87462C686D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1934B01-5A58-4494-831C-C35F276939CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1934B01-5A58-4494-831C-C35F276939CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1934B01-5A58-4494-831C-C35F276939CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1934B01-5A58-4494-831C-C35F276939CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
