@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErisLib", "ErisLib\ErisLib.csproj", "{417852BB-B8F1-42F6-BC39-6A61F8BC384B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErisUi", "ErisUi\ErisUi.csproj", "{12B01D12-7C7A-4685-8B69-2332B8BD6744}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{417852BB-B8F1-42F6-BC39-6A61F8BC384B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{417852BB-B8F1-42F6-BC39-6A61F8BC384B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{417852BB-B8F1-42F6-BC39-6A61F8BC384B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{417852BB-B8F1-42F6-BC39-6A61F8BC384B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12B01D12-7C7A-4685-8B69-2332B8BD6744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12B01D12-7C7A-4685-8B69-2332B8BD6744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12B01D12-7C7A-4685-8B69-2332B8BD6744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12B01D12-7C7A-4685-8B69-2332B8BD6744}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E6143B0-8AEF-49B7-8C5B-8E8E399F03E3}
+	EndGlobalSection
+EndGlobal
