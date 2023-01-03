@@ -8,7 +8,7 @@ Eris is a powerful tool for managing and updating private servers for the popula
 
 ## Badges
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/) ![Language](https://img.shields.io/github/languages/top/xAfterLife/Eris) ![Code Size](https://img.shields.io/github/languages/code-size/xAfterLife/Eris)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/) ![Language](https://img.shields.io/github/languages/top/xAfterLife/Eris) ![Code Size](https://img.shields.io/github/languages/code-size/xAfterLife/Eris) [![CodeFactor](https://www.codefactor.io/repository/github/xafterlife/Eris/badge)](https://www.codefactor.io/repository/github/xafterlife/Eris)
 
 ## Features
 
