@@ -35,6 +35,7 @@ Eris is licensed under the MIT License. See [LICENSE](LICENSE) for more informat
 
 ## Tech Stack
 
-* C#
-* .NET Framework
-* WinForms
+* .NET 7.0
+* WPF
+* MVVM
+* Dependency Injection
