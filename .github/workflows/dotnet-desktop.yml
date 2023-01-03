@@ -9,7 +9,7 @@ on:
 defaults:
   run:
     working-directory: ./src
-    
+
 jobs:
 
   build:
