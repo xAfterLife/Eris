@@ -1,19 +1,40 @@
-# Eris: the ultimate launcher and updater for NosTale private servers.
+# Eris
 
-Welcome to Eris!
+Eris is a powerful tool for managing and updating private servers for the popular MMORPG, NosTale. With a simple, easy-to-use interface and built-in auto-updating, Eris makes it easy to keep your private server running smoothly.
 
-This application is a simple, easy-to-use tool for updating the game files for private servers of the popular MMORPG, NosTale. The launcher is a standalone file with built-in auto-updating, ensuring that you always have access to the latest versions of the game files.
+## Authors
 
-## Getting Started
+- [@xAfterLife](https://www.github.com/xAfterLife)
 
-To use the updater, simply download the latest version from the [releases page](https://github.com/xAfterLife/Eris/releases) and run the executable. The updater will handle the rest, downloading and installing the necessary files for your private server.
+## Badges
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/) ![Language](https://img.shields.io/github/languages/top/xAfterLife/Eris) ![Code Size](https://img.shields.io/github/languages/code-size/xAfterLife/Eris)
+
+## Features
+
+- Launch the private server as a user.
+- Update the game files for the users.
+- Auto update the launcher itself.
+- Display the latest news.
+
+## Installation
+
+To install Eris, simply download the latest version from the releases page and run the executable. The updater will handle the rest, downloading and installing the necessary files for your private server.
 
 ## Contributing
 
-We welcome contributions to the NosTale GameFile Updater project. If you have an idea for a new feature or have found a bug, please open an issue on GitHub. If you would like to contribute code, please submit a pull request.
+If you have an idea for a new feature or have found a bug, please open an issue on GitHub. If you would like to contribute code, please submit a pull request.
 
 ## Support
 
-If you have any questions or need assistance using the NosTale GameFile Updater, please open an issue on GitHub and we will do our best to help you.
+If you have any questions or need assistance using Eris, please open an issue on GitHub and we will do our best to help you.
 
-We hope that you find this tool useful and that it helps to streamline the process of updating your NosTale private server. Thank you for choosing Eris!
+## License
+
+Eris is licensed under the MIT License. See [LICENSE](LICENSE) for more information.
+
+## Tech Stack
+
+* C#
+* .NET Framework
+* WinForms
