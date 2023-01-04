@@ -15,10 +15,10 @@ Eris is a powerful tool for managing and updating private servers for the popula
 
 ## Features
 
-- Launch the private server as a user.
-- Update the game files for the users.
-- Auto update the launcher itself.
-- Display the latest news.
+- Lauch your Game via this Launcher
+- Update the game files to the latest Version
+- Auto-Updating Launcher
+- Display the latest News & Patch-Notes
 
 ## Installation
 
