@@ -1,7 +1,7 @@
 # Eris
 
 Eris is a powerful tool for managing and updating private servers for the popular MMORPG, NosTale. With a simple, easy-to-use interface and built-in auto-updating, Eris makes it easy to keep your private server running smoothly.
-
+[![Eris Logo](https://i.epvpimg.com/f8Aifab.png)](https://i.epvpimg.com/f8Aifab.png)
 ## Authors
 
 - [@xAfterLife](https://www.github.com/xAfterLife)
