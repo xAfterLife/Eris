@@ -1,8 +1,12 @@
-﻿<Application x:Class="EriusUi.App"
+﻿<Application x:Class="ErisUi.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
+             xmlns:view="clr-namespace:ErisUi.View"
+             xmlns:viewModel="clr-namespace:ErisUi.ViewModel"
+             StartupUri="/View/MainWindow.xaml">
     <Application.Resources>
-
+        <DataTemplate DataType="{x:Type viewModel:MainWindowViewModel}">
+            <view:MainWindow />
+        </DataTemplate>
     </Application.Resources>
 </Application>

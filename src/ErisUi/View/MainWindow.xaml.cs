@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace EriusUi;
+namespace ErisUi.View;
 
 /// <summary>
 ///     Interaction logic for MainWindow.xaml

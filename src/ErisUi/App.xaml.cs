@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace EriusUi;
+namespace ErisUi;
 
 /// <summary>
 ///     Interaction logic for App.xaml

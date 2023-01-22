@@ -1,87 +1,130 @@
-﻿using ErisLib.Enums;
+﻿using System.Text.Json;
+using ErisLib.Enums;
 using ErisLib.Structs;
 
 namespace ErisLib;
 
 /// <summary>
-///     Provides a service for downloading one or more files from a remote location.
-///     The progress and download speed of the file(s) can be monitored through events.
+///     Provides data for the <see cref="DownloadService.ProgressChanged" /> event.
 /// </summary>
-internal sealed class DownloadService
+public class ProgressChangedEventArgs : EventArgs
 {
-    private const int MaxQueueSize = 100;
+    public readonly long CurrentSize;
+    public readonly string DownloadSpeed;
+    public readonly string FileName;
+    public readonly long FileSize;
+
+    /// <summary>
+    ///     CTOR of <see cref="ProgressChangedEventArgs" /> class.
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <param name="progressMin"></param>
+    /// <param name="progressMax"></param>
+    /// <param name="downloadSpeed"></param>
+    public ProgressChangedEventArgs(string? fileName, long? progressMin, long? progressMax, string? downloadSpeed)
+    {
+        FileName = fileName ?? string.Empty;
+        CurrentSize = progressMin ?? 0;
+        FileSize = progressMax ?? 0;
+        DownloadSpeed = downloadSpeed ?? string.Empty;
+    }
+}
+
+public sealed class DownloadService
+{
     private static string? _fileName;
     private readonly HttpClient _client;
-    private readonly Queue<(DateTime, long)> _downloadQueue;
-    private readonly IEnumerable<HttpFile> _files;
+
+    /// <summary>
+    ///     <see cref="DownloadSpeedType" />
+    /// </summary>
     public DownloadSpeedType SpeedType { get; }
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="DownloadService" /> class.
+    ///     CTOR of the <see cref="DownloadService" /> Class
     /// </summary>
-    /// <param name="files">The collection of files to download.</param>
-    /// <param name="speedType">The type of download speed to report.</param>
-    public DownloadService(IEnumerable<HttpFile> files, DownloadSpeedType speedType)
+    /// <param name="speedType"></param>
+    public DownloadService(DownloadSpeedType speedType)
     {
-        _files = files;
-        _downloadQueue = new Queue<(DateTime, long)>();
         SpeedType = speedType;
         _client = new HttpClient();
     }
 
     /// <summary>
-    ///     Occurs when the progress of a download has changed.
+    ///     Reports updates of the <see cref="Download" /> Function
     /// </summary>
     public event EventHandler<ProgressChangedEventArgs>? ProgressChanged;
 
     /// <summary>
-    ///     Begins the download of a collection of files.
+    ///     Download as <see cref="HttpFile" />
     /// </summary>
-    /// <param name="downloadDirectory">The directory to save the downloaded files to.</param>
-    /// <returns>A <see cref="Task" /> representing the asynchronous operation.</returns>
-    public async Task StartDownload(string downloadDirectory)
+    /// <param name="url"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public async ValueTask<List<HttpFile>?> GetHttpFile(string url, CancellationToken cancellationToken)
     {
-        foreach ( var file in _files )
+        if ( !Uri.TryCreate(url, UriKind.Absolute, out var uri) )
+            return default;
+
+        var response = await _client.GetAsync(uri, cancellationToken);
+        if ( !response.IsSuccessStatusCode )
+            return default;
+
+        return await JsonSerializer.DeserializeAsync<List<HttpFile>>(await response.Content.ReadAsStreamAsync(cancellationToken), cancellationToken: cancellationToken);
+    }
+
+    /// <summary>
+    ///     Downloads the files written in the List of <see cref="HttpFile" />
+    /// </summary>
+    /// <param name="files"></param>
+    /// <param name="downloadFolder"></param>
+    /// <returns></returns>
+    public async Task Download(List<HttpFile> files, string downloadFolder)
+    {
+        foreach ( var file in files )
         {
             _fileName = file.FileName;
-            var stream = File.OpenWrite(Path.Combine(downloadDirectory, file.FileName));
-
-            await Download(file.Uri, stream);
+            await using var fileStream = File.OpenWrite(Path.Combine(downloadFolder, file.FileName));
+            await DownloadFile(file.Uri, fileStream);
         }
     }
 
     /// <summary>
-    ///     Downloads a file from the specified URL and saves it to the specified output stream.
+    ///     Loads a file into the Stream with Reporting of Progress and Download-Speed
     /// </summary>
-    /// <param name="url">The URL of the file to download.</param>
-    /// <param name="output">The stream to save the downloaded file to.</param>
-    /// <returns>A <see cref="Task" /> representing the asynchronous operation.</returns>
-    private async Task Download(string url, Stream output)
+    /// <param name="url"></param>
+    /// <param name="output"></param>
+    /// <returns></returns>
+    private async Task DownloadFile(string url, Stream output)
     {
-        long bytesRecieved = 0;
-        var buffer = new byte[8192];
-
-        if ( !Uri.IsWellFormedUriString(url, UriKind.Absolute) )
+        if ( !Uri.TryCreate(url, UriKind.Absolute, out var uri) )
             return;
 
-        using var response = await _client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
-        await using var stream = await response.Content.ReadAsStreamAsync();
-        var totalBytes = response.Content.Headers.ContentLength;
+        long bytesRecieved = 0;
+        var buffer = new Memory<byte>(new byte[8192]);
 
-        long bytesRead;
+        using var response = await _client.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead);
+        var totalBytes = response.Content.Headers.ContentLength;
+        await using var stream = await response.Content.ReadAsStreamAsync();
+
+        int bytesRead;
+        var startTime = DateTime.Now;
+        var lastDeltaTime = startTime;
 
         do
         {
             bytesRecieved += bytesRead = await stream.ReadAsync(buffer);
-            await output.WriteAsync(buffer);
+            var deltaTime = DateTime.Now;
+            await output.WriteAsync(buffer[..bytesRead]);
 
-            _downloadQueue.Enqueue((DateTime.Now, bytesRecieved));
-            if ( _downloadQueue.Count < MaxQueueSize )
-                _ = _downloadQueue.Dequeue();
+            if ( deltaTime.Subtract(lastDeltaTime).TotalMilliseconds <= 250 )
+                continue;
 
-            OnDownloadSpeedChanged(new DownloadSpeedChangedEventArgs($"{GetDownloadSpeed()} {Enum.GetName(typeof(DownloadSpeedType), SpeedType)}"));
-            OnProgressChanged(new ProgressChangedEventArgs(bytesRecieved, totalBytes, (float)Math.Round((decimal)(bytesRead / (totalBytes ?? 0) * 100), 2)));
-        } while ( bytesRead != 0 || totalBytes >= bytesRecieved );
+            lastDeltaTime = deltaTime;
+            OnProgressChanged(new ProgressChangedEventArgs(_fileName, bytesRecieved, totalBytes, $"{GetDownloadSpeed(bytesRecieved, DateTime.Now.Subtract(startTime))} {Enum.GetName(typeof(DownloadSpeedType), SpeedType)}"));
+        } while ( bytesRead != 0 || totalBytes > bytesRecieved );
+
+        OnProgressChanged(new ProgressChangedEventArgs(_fileName, bytesRecieved, totalBytes, $"{GetDownloadSpeed(bytesRecieved, DateTime.Now.Subtract(startTime))} {Enum.GetName(typeof(DownloadSpeedType), SpeedType)}"));
     }
 
     /// <summary>
@@ -97,63 +140,11 @@ internal sealed class DownloadService
     ///     Calculates the download speed of a file.
     /// </summary>
     /// <returns>The download speed, in selected SpeedType per second.</returns>
-    private float GetDownloadSpeed()
+    private float GetDownloadSpeed(long bytes, TimeSpan time)
     {
-        if ( _downloadQueue.Count < 2 )
-            return 0f;
+        if ( bytes < 0 || time.Milliseconds == 0 )
+            return 0;
 
-        var (firstDate, firstBytes) = _downloadQueue.LastOrDefault();
-        var (lastDate, lastBytes) = _downloadQueue.FirstOrDefault();
-
-        var bytes = lastBytes - firstBytes;
-        var time = lastDate - firstDate;
-
-        return (float)Math.Round((decimal)(bytes / time.Milliseconds * 1000 / Math.Pow(1024.0f, (double)SpeedType)), 2);
-    }
-
-    /// <summary>
-    ///     Raises the <see cref="DownloadSpeedChanged" /> event.
-    /// </summary>
-    /// <param name="e">The event arguments.</param>
-    internal void OnDownloadSpeedChanged(DownloadSpeedChangedEventArgs e)
-    {
-        DownloadSpeedChanged?.Invoke(this, e);
-    }
-
-    /// <summary>
-    ///     Occurs when the download speed of a file has changed.
-    /// </summary>
-    public event EventHandler<DownloadSpeedChangedEventArgs>? DownloadSpeedChanged;
-
-    /// <summary>
-    ///     Provides data for the <see cref="DownloadService.ProgressChanged" /> event.
-    /// </summary>
-    public class ProgressChangedEventArgs : EventArgs
-    {
-        public readonly long CurrentSize;
-        public readonly string FileName;
-        public readonly long FileSize;
-        public readonly float ProgressPercent;
-
-        public ProgressChangedEventArgs(long? progressMin, long? progressMax, float? progressPercent)
-        {
-            FileName = _fileName ?? string.Empty;
-            CurrentSize = progressMin ?? 0;
-            FileSize = progressMax ?? 0;
-            ProgressPercent = progressPercent ?? 0;
-        }
-    }
-
-    /// <summary>
-    ///     Provides data for the <see cref="DownloadService.DownloadSpeedChanged" /> event.
-    /// </summary>
-    public sealed class DownloadSpeedChangedEventArgs : EventArgs
-    {
-        public readonly string DownloadSpeed;
-
-        public DownloadSpeedChangedEventArgs(string? downloadSpeed)
-        {
-            DownloadSpeed = downloadSpeed ?? "NaN";
-        }
+        return (float)Math.Round((decimal)(bytes / time.TotalMilliseconds * 1000 / Math.Pow(1024.0f, (double)SpeedType)), 2);
     }
 }

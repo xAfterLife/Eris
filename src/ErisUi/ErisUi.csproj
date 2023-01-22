@@ -7,4 +7,30 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Recources\bg.png" />
+    <None Remove="Recources\discord.png" />
+    <None Remove="Recources\gears.png" />
+    <None Remove="Recources\guide.png" />
+    <None Remove="Recources\icon.png" />
+    <None Remove="Recources\no-play-button.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ErisLib\ErisLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Recources\bg.png" />
+    <Resource Include="Recources\discord.png" />
+    <Resource Include="Recources\gears.png" />
+    <Resource Include="Recources\guide.png" />
+    <Resource Include="Recources\icon.png" />
+    <Resource Include="Recources\no-play-button.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+
 </Project>
