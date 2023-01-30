@@ -1,36 +1,41 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<LangVersion>10.0</LangVersion>
+		<UseWPF>true</UseWPF>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<ApplicationIcon>applicationIcon.ico</ApplicationIcon>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Recources\bg.png" />
-    <None Remove="Recources\discord.png" />
-    <None Remove="Recources\gears.png" />
-    <None Remove="Recources\guide.png" />
-    <None Remove="Recources\icon.png" />
-    <None Remove="Recources\no-play-button.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="applicationIcon.ico" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ErisLib\ErisLib.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Costura.Fody" Version="5.7.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="WPF-UI" Version="2.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Recources\bg.png" />
-    <Resource Include="Recources\discord.png" />
-    <Resource Include="Recources\gears.png" />
-    <Resource Include="Recources\guide.png" />
-    <Resource Include="Recources\icon.png" />
-    <Resource Include="Recources\no-play-button.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Assets\applicationIcon-1024.png" />
+		<None Remove="Assets\applicationIcon-256.png" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Assets\applicationIcon-1024.png" />
+		<Resource Include="Assets\applicationIcon-256.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ErisLib\ErisLib.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -1,0 +1,61 @@
+﻿<ui:UiPage x:Class="ErisUi.Views.Pages.LauncherPage"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:local="clr-namespace:ErisUi.Views.Pages"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+           xmlns:models="clr-namespace:ErisUi.Models"
+           Title="LauncherPage"
+           d:DataContext="{d:DesignInstance local:LauncherPage, IsDesignTimeCreatable=False}"
+           d:DesignHeight="572"
+           d:DesignWidth="1036"
+           d:Background="{DynamicResource ApplicationBackgroundBrush}"
+           Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+           mc:Ignorable="d">
+
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" Margin="8">
+            <ItemsControl ItemsSource="{Binding ViewModel.Patchnotes}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:Patchnotes}">
+                        <ui:Card Margin="4">
+                            <ui:Card.Background>
+                                <ImageBrush ImageSource="{Binding BannerUri}" Stretch="UniformToFill" />
+                            </ui:Card.Background>
+                            <ui:Card.Content>
+                                <ui:Hyperlink Margin="8,16" Icon="News28" Content="{Binding Title}"
+                                              NavigateUri="{Binding NavigationUri}" />
+                            </ui:Card.Content>
+                            <ui:Card.Footer>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Content}" />
+                            </ui:Card.Footer>
+                        </ui:Card>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <DockPanel Grid.Column="0" Grid.Row="1" Margin="10,0,0,0">
+            <DockPanel DockPanel.Dock="Top">
+                <Label DockPanel.Dock="Left" HorizontalAlignment="Left">Example.NOS (3/33 9.99%)</Label>
+                <Label DockPanel.Dock="Right" HorizontalAlignment="Right">999/3000 33.32% - 3.01 MBs</Label>
+            </DockPanel>
+            <ProgressBar DockPanel.Dock="Top" Value="10" />
+            <ProgressBar DockPanel.Dock="Bottom" Value="33" />
+        </DockPanel>
+
+        <ui:Button Grid.Column="1" Grid.Row="1" Icon="Play24" Margin="0,0,0,8" HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom" Content="Play" Height="31" />
+    </Grid>
+</ui:UiPage>

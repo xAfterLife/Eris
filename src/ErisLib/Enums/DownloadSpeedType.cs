@@ -7,7 +7,7 @@ namespace ErisLib.Enums;
 /// </summary>
 public enum DownloadSpeedType
 {
-    KBs = 1,
-    MBs,
-    GBs
+	KBs = 1,
+	MBs,
+	GBs
 }
