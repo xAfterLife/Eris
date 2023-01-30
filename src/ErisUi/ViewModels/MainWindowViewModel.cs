@@ -1,7 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ErisUi.Views.Pages;
@@ -46,7 +48,7 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		ApplicationTitle = "WPF UI - ErisUi";
 
-		NavigationItems = new ObservableCollection<INavigationControl> { new NavigationItem { Content = "Launcher", PageTag = "launcher", Icon = SymbolRegular.DataHistogram24, PageType = typeof(LauncherPage) }, new NavigationItem { Content = "Launcher", PageTag = "launcher", Icon = SymbolRegular.WebAsset24, PageType = null } };
+		NavigationItems = new ObservableCollection<INavigationControl> { new NavigationItem { Content = "Launcher", PageTag = "launcher", Icon = SymbolRegular.DataHistogram24, PageType = typeof(LauncherPage) }, new NavigationItem { Content = "Launcher", PageTag = "launcher", Image = new BitmapImage(new Uri("pack://application:,,,/Assets/discord24.png", UriKind.Absolute)), PageType = null } };
 
 		NavigationFooter = new ObservableCollection<INavigationControl> { new NavigationItem { Content = "Settings", PageTag = "settings", Icon = SymbolRegular.Settings24, Command = OpenConfigCommand } };
 

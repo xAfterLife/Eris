@@ -48,14 +48,20 @@
 
         <DockPanel Grid.Column="0" Grid.Row="1" Margin="10,0,0,0">
             <DockPanel DockPanel.Dock="Top">
-                <Label DockPanel.Dock="Left" HorizontalAlignment="Left">Example.NOS (3/33 9.99%)</Label>
-                <Label DockPanel.Dock="Right" HorizontalAlignment="Right">999/3000 33.32% - 3.01 MBs</Label>
+                <Label DockPanel.Dock="Left" HorizontalAlignment="Left"
+                       Content="{Binding ViewModel.AbsoluteDownloadProgress}" />
+                <Label DockPanel.Dock="Right" HorizontalAlignment="Right"
+                       Content="{Binding ViewModel.CurrentFileProgress}" />
             </DockPanel>
-            <ProgressBar DockPanel.Dock="Top" Value="10" />
-            <ProgressBar DockPanel.Dock="Bottom" Value="33" />
+            <ProgressBar DockPanel.Dock="Top" Value="{Binding ViewModel.CurrentProgressValue}"
+                         Maximum="{Binding ViewModel.CurrentProgressMax}" />
+            <ProgressBar DockPanel.Dock="Bottom" Value="{Binding ViewModel.AbsoluteProgressValue}"
+                         Maximum="{Binding ViewModel.AbsoluteProgressMax}" />
         </DockPanel>
 
-        <ui:Button Grid.Column="1" Grid.Row="1" Icon="Play24" Margin="0,0,0,8" HorizontalAlignment="Center"
-                   VerticalAlignment="Bottom" Content="Play" Height="31" />
+        <ui:Button Grid.Column="1" Grid.Row="1" Icon="Play24" Margin="0,0,0,8"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom" Content="Play" Height="30"
+                   IsEnabled="{Binding ViewModel.StartButtonEnabled}" />
     </Grid>
 </ui:UiPage>

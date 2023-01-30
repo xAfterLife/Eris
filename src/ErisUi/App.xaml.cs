@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
@@ -29,7 +30,7 @@ public partial class App
 												  .ConfigureAppConfiguration(c =>
 												  {
 													  c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location));
-													  c.AddJsonFile("appsettings.json", false);
+													  c.AddJsonFile(new Uri("pack://application:,,,/Assets/appconfig.json", UriKind.Absolute).AbsolutePath, true);
 												  })
 												  .ConfigureServices((context, services) =>
 												  {
