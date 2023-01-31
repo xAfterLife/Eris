@@ -6,8 +6,8 @@
 		<Nullable>enable</Nullable>
 		<LangVersion>10.0</LangVersion>
 		<UseWPF>true</UseWPF>
-		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<ApplicationIcon>applicationIcon.ico</ApplicationIcon>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -25,12 +25,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="Assets\appconfig.json" />
 		<None Remove="Assets\applicationIcon-1024.png" />
 		<None Remove="Assets\applicationIcon-256.png" />
 		<None Remove="Assets\discord24.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="Assets\appconfig.json" />
 		<Resource Include="Assets\applicationIcon-1024.png" />
 		<Resource Include="Assets\applicationIcon-256.png" />
 		<Resource Include="Assets\discord24.png" />
@@ -38,6 +40,21 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\ErisLib\ErisLib.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Properties\Resources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 </Project>

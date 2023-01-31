@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
@@ -30,7 +29,7 @@ public partial class App
 												  .ConfigureAppConfiguration(c =>
 												  {
 													  c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location));
-													  c.AddJsonFile(new Uri("pack://application:,,,/Assets/appconfig.json", UriKind.Absolute).AbsolutePath, true);
+													  c.AddJsonStream(new MemoryStream(ErisUi.Properties.Resources.appconfig));
 												  })
 												  .ConfigureServices((context, services) =>
 												  {

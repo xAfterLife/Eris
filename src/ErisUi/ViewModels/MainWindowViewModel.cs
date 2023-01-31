@@ -7,15 +7,18 @@ using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ErisUi.Views.Pages;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Wpf.Ui.Common;
 using Wpf.Ui.Controls;
 using Wpf.Ui.Controls.Interfaces;
-using Wpf.Ui.Mvvm.Contracts;
 
 namespace ErisUi.ViewModels;
 
 public partial class MainWindowViewModel : ObservableObject
 {
+	private readonly IServiceProvider _serviceProvider;
+
 	[ObservableProperty]
 	private string _applicationTitle = string.Empty;
 
@@ -30,8 +33,9 @@ public partial class MainWindowViewModel : ObservableObject
 	[ObservableProperty]
 	private ObservableCollection<MenuItem> _trayMenuItems = new();
 
-	public MainWindowViewModel(INavigationService navigationService)
+	public MainWindowViewModel(IServiceProvider serviceProvider)
 	{
+		_serviceProvider = serviceProvider;
 		if ( !_isInitialized )
 			InitializeViewModel();
 	}
@@ -46,7 +50,7 @@ public partial class MainWindowViewModel : ObservableObject
 
 	private void InitializeViewModel()
 	{
-		ApplicationTitle = "WPF UI - ErisUi";
+		ApplicationTitle = _serviceProvider.GetRequiredService<IConfiguration>().GetValue<string>("LauncherTitle");
 
 		NavigationItems = new ObservableCollection<INavigationControl> { new NavigationItem { Content = "Launcher", PageTag = "launcher", Icon = SymbolRegular.DataHistogram24, PageType = typeof(LauncherPage) }, new NavigationItem { Content = "Launcher", PageTag = "launcher", Image = new BitmapImage(new Uri("pack://application:,,,/Assets/discord24.png", UriKind.Absolute)), PageType = null } };
 
