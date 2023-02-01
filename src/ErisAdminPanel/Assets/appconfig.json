@@ -1,0 +1,6 @@
+﻿{
+  "ApplicationExe": "NTConfig.exe",
+  "LauncherTitle": "ErisUi - The ultimate Launcher and Updater",
+  "PatchnotesUri": "Uri",
+  "UpdateManifestUri": "Uri"
+}

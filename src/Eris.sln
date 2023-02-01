@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErisLib", "ErisLib\ErisLib.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErisUi", "ErisUi\ErisUi.csproj", "{B1ABA286-566C-4D5F-AD75-CBCB9014E8ED}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErisAdminPanel", "ErisAdminPanel\ErisAdminPanel.csproj", "{D75BD1D1-F479-4FF4-A133-E6E40C705910}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B1ABA286-566C-4D5F-AD75-CBCB9014E8ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1ABA286-566C-4D5F-AD75-CBCB9014E8ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1ABA286-566C-4D5F-AD75-CBCB9014E8ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D75BD1D1-F479-4FF4-A133-E6E40C705910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D75BD1D1-F479-4FF4-A133-E6E40C705910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D75BD1D1-F479-4FF4-A133-E6E40C705910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D75BD1D1-F479-4FF4-A133-E6E40C705910}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

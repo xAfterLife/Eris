@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ErisLib;
+using ErisLib.Models;
 using ErisUi.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Wpf.Ui.Common.Interfaces;

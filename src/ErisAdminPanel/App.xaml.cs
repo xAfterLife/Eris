@@ -2,19 +2,18 @@
 using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
-using ErisLib;
-using ErisUi.Services;
-using ErisUi.ViewModels;
-using ErisUi.Views.Pages;
-using ErisUi.Views.Windows;
+using ErisAdminPanel.Services;
+using ErisAdminPanel.ViewModels;
+using ErisAdminPanel.Views.Pages;
+using ErisAdminPanel.Views.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Wpf.Ui.Mvvm.Contracts;
 using Wpf.Ui.Mvvm.Services;
-using static ErisUi.Properties.Resources;
+using static ErisAdminPanel.Properties.Resources;
 
-namespace ErisUi;
+namespace ErisAdminPanel;
 
 /// <summary>
 ///     Interaction logic for App.xaml
@@ -54,11 +53,8 @@ public partial class App
 													  services.AddScoped<MainWindowViewModel>();
 
 													  // Views and ViewModels
-													  services.AddScoped<LauncherPage>();
-													  services.AddScoped<LauncherViewModel>();
-
-													  // Service for Downloads
-													  services.AddScoped<DownloadService>();
+													  services.AddScoped<DashboardPage>();
+													  services.AddScoped<DashboardViewModel>();
 												  })
 												  .Build();
 

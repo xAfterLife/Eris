@@ -6,16 +6,17 @@
 		<Nullable>enable</Nullable>
 		<LangVersion>10.0</LangVersion>
 		<UseWPF>true</UseWPF>
-		<ApplicationIcon>applicationIcon.ico</ApplicationIcon>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<ApplicationIcon>applicationIcon.ico</ApplicationIcon>
+		<StartupObject></StartupObject>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <DebugType>embedded</DebugType>
+		<DebugType>embedded</DebugType>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <DebugType>embedded</DebugType>
+		<DebugType>embedded</DebugType>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -23,46 +24,37 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Costura.Fody" Version="5.7.0">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
 		<PackageReference Include="WPF-UI" Version="2.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="applicationIcon.ico" />
 		<None Remove="Assets\appconfig.json" />
 		<None Remove="Assets\applicationIcon-1024.png" />
 		<None Remove="Assets\applicationIcon-256.png" />
-		<None Remove="Assets\discord24.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Resource Include="Assets\appconfig.json" />
 		<Resource Include="Assets\applicationIcon-1024.png" />
 		<Resource Include="Assets\applicationIcon-256.png" />
-		<Resource Include="Assets\discord24.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ErisLib\ErisLib.csproj" />
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Properties\Resources.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Resources.resx</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Update="Properties\Resources.resx">
-	    <Generator>PublicResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 
 </Project>

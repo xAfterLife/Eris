@@ -1,4 +1,4 @@
-﻿namespace ErisLib.Structs;
+﻿namespace ErisLib.Models;
 
 /// <summary>
 ///     Represents a file to be downloaded from a remote location via HTTP.
