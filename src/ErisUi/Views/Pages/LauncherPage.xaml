@@ -35,7 +35,7 @@
                             </ui:Card.Background>
                             <ui:Card.Content>
                                 <ui:Hyperlink Margin="8,16" Icon="News28" Content="{Binding Title}"
-                                              NavigateUri="{Binding NavigationUri}" />
+                                              NavigateUri="{Binding NavigationUri}" Background="#BB343434" />
                             </ui:Card.Content>
                             <ui:Card.Footer>
                                 <TextBlock TextWrapping="Wrap" Text="{Binding Content}" />
@@ -49,17 +49,17 @@
         <DockPanel Grid.Column="0" Grid.Row="1" Margin="10,0,0,0">
             <DockPanel DockPanel.Dock="Top">
                 <Label DockPanel.Dock="Left" HorizontalAlignment="Left"
-                       Content="{Binding ViewModel.AbsoluteDownloadProgress}" />
+                       Content="{Binding ViewModel.Downloader.AbsoluteDownloadProgress}" />
                 <Label DockPanel.Dock="Right" HorizontalAlignment="Right"
-                       Content="{Binding ViewModel.CurrentFileProgress}" />
+                       Content="{Binding ViewModel.Downloader.CurrentFileProgress}" />
             </DockPanel>
-            <ProgressBar DockPanel.Dock="Top" Value="{Binding ViewModel.CurrentProgressValue}"
-                         Maximum="{Binding ViewModel.CurrentProgressMax}" />
-            <ProgressBar DockPanel.Dock="Bottom" Value="{Binding ViewModel.AbsoluteProgressValue}"
-                         Maximum="{Binding ViewModel.AbsoluteProgressMax}" />
+            <ProgressBar DockPanel.Dock="Top" Value="{Binding ViewModel.Downloader.CurrentProgressValue}"
+                         Maximum="{Binding ViewModel.Downloader.CurrentProgressMax}" />
+            <ProgressBar DockPanel.Dock="Bottom" Value="{Binding ViewModel.Downloader.AbsoluteProgressValue}"
+                         Maximum="{Binding ViewModel.Downloader.AbsoluteProgressMax}" />
         </DockPanel>
 
-        <ui:Button Grid.Column="1" Grid.Row="1" Icon="Play24" Margin="0,0,0,8"
+        <ui:Button Grid.Column="1" Grid.Row="1" Icon="Play24" Margin="0,0,2,8"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Bottom" Content="Play" Height="30"
                    IsEnabled="{Binding ViewModel.StartButtonEnabled}" />

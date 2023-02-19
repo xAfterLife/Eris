@@ -2,10 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ErisLib;
-using ErisLib.Models;
 using ErisUi.Models;
-using Microsoft.Extensions.DependencyInjection;
 using Wpf.Ui.Common.Interfaces;
 
 namespace ErisUi.ViewModels;
@@ -13,24 +10,8 @@ namespace ErisUi.ViewModels;
 public sealed partial class LauncherViewModel : ObservableObject, INavigationAware, IAsyncDisposable
 {
 	[ObservableProperty]
-	private string _absoluteDownloadProgress = "";
+	private Downloader _downloader = null!;
 
-	[ObservableProperty]
-	private int _absoluteProgressMax = 100;
-
-	[ObservableProperty]
-	private int _absoluteProgressValue;
-
-	[ObservableProperty]
-	private string _currentFileProgress = "";
-
-	[ObservableProperty]
-	private int _currentProgressMax = 100;
-
-	[ObservableProperty]
-	private int _currentProgressValue;
-
-	private DownloadService? _downloadService;
 	private bool _isInitialized;
 
 	[ObservableProperty]
@@ -44,11 +25,10 @@ public sealed partial class LauncherViewModel : ObservableObject, INavigationAwa
 			InitializeViewModel(serviceProvider);
 	}
 
-	public ValueTask DisposeAsync()
+	public async ValueTask DisposeAsync()
 	{
-		if ( _isInitialized && _downloadService != null )
-			_downloadService.ProgressChanged -= _downloadService_ProgressChanged;
-		return default;
+		if ( _isInitialized )
+			await Downloader.DisposeAsync();
 	}
 
 	public void OnNavigatedTo() {}
@@ -57,20 +37,7 @@ public sealed partial class LauncherViewModel : ObservableObject, INavigationAwa
 
 	private void InitializeViewModel(IServiceProvider serviceProvider)
 	{
-		_downloadService = serviceProvider.GetRequiredService<DownloadService>();
-		_downloadService.ProgressChanged += _downloadService_ProgressChanged;
-
+		Downloader = new Downloader(serviceProvider);
 		_isInitialized = true;
-	}
-
-	private void _downloadService_ProgressChanged(object? sender, ProgressChangedEventArgs e)
-	{
-		_absoluteProgressValue = e.CurrentFile;
-		_absoluteProgressMax = e.MaxFile;
-		_absoluteDownloadProgress = $"{e.FileName} ({e.CurrentFile}/{e.MaxFile} - {Math.Round(100d / e.MaxFile * e.CurrentFile, 2)}%)";
-
-		_currentProgressValue = (int)(100 / e.FileSize * e.CurrentSize);
-		_currentProgressMax = 100;
-		_currentFileProgress = $"{e.FileSize}/{e.FileSize} {Math.Round(100d / e.FileSize * e.CurrentSize, 2)} - {e.DownloadSpeed}";
 	}
 }
