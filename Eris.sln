@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErisLib", "ErisLib\ErisLib.csproj", "{6825D335-97DB-417D-8FD7-1946BBB65935}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErisLib", "src\ErisLib\ErisLib.csproj", "{6825D335-97DB-417D-8FD7-1946BBB65935}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErisUi", "ErisUi\ErisUi.csproj", "{B1ABA286-566C-4D5F-AD75-CBCB9014E8ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErisUi", "src\ErisUi\ErisUi.csproj", "{B1ABA286-566C-4D5F-AD75-CBCB9014E8ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErisAdminPanel", "ErisAdminPanel\ErisAdminPanel.csproj", "{D75BD1D1-F479-4FF4-A133-E6E40C705910}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErisAdminPanel", "src\ErisAdminPanel\ErisAdminPanel.csproj", "{D75BD1D1-F479-4FF4-A133-E6E40C705910}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
