@@ -73,4 +73,10 @@ public partial class DashboardViewModel : ObservableObject, INavigationAware
 			WriteFileBackgroundColor = "#393939";
 		});
 	}
+
+	[RelayCommand]
+	public void AddNews()
+	{
+		Patchnotes?.Add(new Patchnotes(default!,default!,string.Empty,string.Empty));
+	}
 }

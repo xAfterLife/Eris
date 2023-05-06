@@ -28,7 +28,7 @@ public partial class App
 	private static readonly IHost Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder()
 												  .ConfigureAppConfiguration(c =>
 												  {
-													  c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location) ?? throw new InvalidOperationException());
+													  c.SetBasePath(Path.GetDirectoryName(AppContext.BaseDirectory) ?? throw new InvalidOperationException());
 													  c.AddJsonFile("appconfig.json", true);
 													  c.Build();
 												  })
@@ -56,6 +56,9 @@ public partial class App
 													  // Views and ViewModels
 													  services.AddScoped<DashboardPage>();
 													  services.AddScoped<DashboardViewModel>();
+
+													  services.AddScoped<FilesPage>();
+													  services.AddScoped<FilesViewModel>();
 												  })
 												  .Build();
 

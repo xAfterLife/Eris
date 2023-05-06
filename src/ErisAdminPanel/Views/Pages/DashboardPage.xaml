@@ -26,49 +26,54 @@
         </Grid.RowDefinitions>
 
         <ScrollViewer Grid.Column="0" Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="8">
-            <ItemsControl ItemsSource="{Binding ViewModel.Patchnotes}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:Patchnotes}">
-                        <ui:Card Margin="4">
-                            <ui:Card.Content>
-                                <StackPanel>
-                                    <ui:TextBox PlaceholderText="Title" AcceptsReturn="True" Icon="TextAddT24" Text="{Binding Title}"
-                                                Background="#BB343434" />
-                                    <ui:TextBox PlaceholderText="NavigationUri" Icon="Link24" Text="{Binding NavigationUri}"
-                                                Background="#BB343434" />
-                                    <ui:TextBox PlaceholderText="BannerUri" Icon="Link24" Text="{Binding BannerUri}"
-                                                Background="#BB343434" />
-                                </StackPanel>
-                            </ui:Card.Content>
-                            <ui:Card.Footer>
-                                <ui:TextBox AcceptsReturn="True" TextWrapping="WrapWithOverflow"
-                                            Text="{Binding Content}" />
-                            </ui:Card.Footer>
-                        </ui:Card>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <StackPanel>
+                <ItemsControl ItemsSource="{Binding ViewModel.Patchnotes}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:Patchnotes}">
+                            <ui:Card Margin="4">
+                                <ui:Card.Content>
+                                    <StackPanel>
+                                        <ui:TextBox PlaceholderText="Title" AcceptsReturn="True" Icon="TextAddT24" Text="{Binding Title}"
+                                                    Background="#BB343434" />
+                                        <ui:TextBox PlaceholderText="NavigationUri" Icon="Link24" Text="{Binding NavigationUri}"
+                                                    Background="#BB343434" />
+                                        <ui:TextBox PlaceholderText="BannerUri" Icon="Link24" Text="{Binding BannerUri}"
+                                                    Background="#BB343434" />
+                                    </StackPanel>
+                                </ui:Card.Content>
+                                <ui:Card.Footer>
+                                    <ui:TextBox AcceptsReturn="True" TextWrapping="WrapWithOverflow"
+                                                Text="{Binding Content}" />
+                                </ui:Card.Footer>
+                            </ui:Card>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ui:Button Margin="4" HorizontalAlignment="Right" Icon="AddCircle32" Command="{Binding ViewModel.AddNewsCommand}" Content="New Patchnote"/>
+            </StackPanel>
         </ScrollViewer>
 
         <ScrollViewer Grid.Column="1" Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="8">
-            <ItemsControl ItemsSource="{Binding ViewModel.Patchnotes}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:Patchnotes}">
-                        <ui:Card Margin="4">
-                            <ui:Card.Background>
-                                <ImageBrush ImageSource="{Binding BannerUri}" Stretch="UniformToFill" />
-                            </ui:Card.Background>
-                            <ui:Card.Content>
-                                <ui:Hyperlink Margin="8,16" Icon="News28" Content="{Binding Title}"
-                                              NavigateUri="{Binding NavigationUri}" Background="#BB343434" />
-                            </ui:Card.Content>
-                            <ui:Card.Footer>
-                                <TextBlock TextWrapping="WrapWithOverflow" Text="{Binding Content}" />
-                            </ui:Card.Footer>
-                        </ui:Card>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <StackPanel>
+                <ItemsControl ItemsSource="{Binding ViewModel.Patchnotes}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:Patchnotes}">
+                            <ui:Card Margin="4">
+                                <ui:Card.Background>
+                                    <ImageBrush ImageSource="{Binding BannerUri}" Stretch="UniformToFill" />
+                                </ui:Card.Background>
+                                <ui:Card.Content>
+                                    <ui:Hyperlink Margin="8,16" Icon="News28" Content="{Binding Title}"
+                                                  NavigateUri="{Binding NavigationUri}" Background="#BB343434" />
+                                </ui:Card.Content>
+                                <ui:Card.Footer>
+                                    <TextBlock TextWrapping="WrapWithOverflow" Text="{Binding Content}" />
+                                </ui:Card.Footer>
+                            </ui:Card>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
         </ScrollViewer>
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="8" Grid.Column="0" Grid.Row="1"
@@ -79,18 +84,15 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1"
                     Grid.Row="1" Margin="10">
             <ui:Button Margin="2, 0" PressedBackground="#53A0E8" MouseOverBackground="#80b9ee"
-                       Command="{Binding ViewModel.SelectDirectoryCommand}" Icon="Folder24">
-                Select Directory
-            </ui:Button>
+                       Command="{Binding ViewModel.SelectDirectoryCommand}" Icon="Folder24"
+                       Content="Select Directory"/>
             <ui:Button Margin="2, 0" PressedBackground="#53A0E8" MouseOverBackground="#80b9ee"
-                       Command="{Binding ViewModel.OpenInExplorerCommand}" Icon="Folder24">
-                Open in Explorer
-            </ui:Button>
+                       Command="{Binding ViewModel.OpenInExplorerCommand}" Icon="Folder24"
+                       Content="Open in Explorer"/>
             <ui:Button Margin="2, 0" Background="{Binding ViewModel.WriteFileBackgroundColor}"
                        PressedBackground="#53A0E8" MouseOverBackground="#80b9ee"
-                       Command="{Binding ViewModel.WriteFileCommand}" Icon="Pen24">
-                Write File
-            </ui:Button>
+                       Command="{Binding ViewModel.WriteFileCommand}" Icon="Pen24"
+                       Content="Write File"/>
         </StackPanel>
     </Grid>
 </ui:UiPage>

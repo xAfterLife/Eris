@@ -4,13 +4,13 @@
 ///     Represents a file to be downloaded from a remote location via HTTP.
 /// </summary>
 public readonly struct HttpFile
-{
-	public readonly long Size;
-	public readonly string Uri;
-	public readonly string FileName;
-	public readonly Guid VersionGuid;
-	public readonly DateTime WriteDateUtc;
-	public readonly DateTime CreationDateUtc;
+{ 
+	public long Size { get; init; }
+	public string Uri { get; init; }
+	public string FileName { get; init; }
+	public Guid VersionGuid { get; init; }
+	public DateTime WriteDateUtc { get; init; }
+	public DateTime CreationDateUtc { get; init; }
 
 	public HttpFile(string fileName, string uri, DateTime writeDateUtc, DateTime creationDateUtc, long size, Guid? versionGuid = null)
 	{
