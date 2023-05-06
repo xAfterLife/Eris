@@ -4,7 +4,7 @@ using ErisLib.Enums;
 
 namespace ErisLib;
 
-public class LoggingService
+public sealed class LoggingService
 {
 	private readonly LoggingOutputType _debugType;
 

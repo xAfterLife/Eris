@@ -48,13 +48,30 @@ public partial class MainWindowViewModel : ObservableObject
 			Process.Start(path);
 	}
 
+	[RelayCommand]
+	public static void CloseProgram()
+	{
+		Environment.Exit(0);
+	}
+
 	private void InitializeViewModel()
 	{
-		ApplicationTitle = _serviceProvider.GetRequiredService<IConfiguration>().GetValue<string>("LauncherTitle");
+		ApplicationTitle = _serviceProvider.GetRequiredService<IConfiguration>().GetValue<string>("LauncherTitle") ?? "Launcher-Title";
 
-		NavigationItems = new ObservableCollection<INavigationControl> { new NavigationItem { Content = "Launcher", PageTag = "launcher", Icon = SymbolRegular.DataHistogram24, PageType = typeof(LauncherPage) }, new NavigationItem { Content = "Launcher", PageTag = "launcher", Image = new BitmapImage(new Uri("pack://application:,,,/Assets/discord24.png", UriKind.Absolute)), PageType = null } };
+		NavigationItems = new ObservableCollection<INavigationControl> { new NavigationItem { Content = "Launcher", PageTag = "launcher", Icon = SymbolRegular.DataHistogram24, PageType = typeof(LauncherPage) }, new NavigationItem { Content = "Discord", PageTag = "discord", Image = new BitmapImage(new Uri("pack://application:,,,/Assets/discord24.png", UriKind.Absolute)), PageType = null } };
 
-		NavigationFooter = new ObservableCollection<INavigationControl> { new NavigationItem { Content = "Settings", PageTag = "settings", Icon = SymbolRegular.Settings24, Command = OpenConfigCommand } };
+		NavigationFooter = new ObservableCollection<INavigationControl>
+		{
+			new NavigationItem { Content = "Settings", PageTag = "settings", Icon = SymbolRegular.Settings24, Command = OpenConfigCommand },
+			new NavigationItem
+			{
+				Content = "Exit",
+				PageTag = "exit",
+				Icon = SymbolRegular.Door28,
+				PageType = null,
+				Command = CloseProgramCommand
+			}
+		};
 
 		TrayMenuItems = new ObservableCollection<MenuItem> { new() { Header = "Home", Tag = "tray_home" } };
 

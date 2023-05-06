@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
@@ -29,10 +31,10 @@ public partial class App
 	private static readonly IHost Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder()
 												  .ConfigureAppConfiguration(c =>
 												  {
-													  c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location));
+													  c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location) ?? throw new InvalidOperationException());
 													  c.AddJsonStream(new MemoryStream(appconfig));
 												  })
-												  .ConfigureServices((context, services) =>
+												  .ConfigureServices((_, services) =>
 												  {
 													  // App Host
 													  services.AddHostedService<ApplicationHostService>();
@@ -95,6 +97,23 @@ public partial class App
 	/// </summary>
 	private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
 	{
-		// For more info see https://docs.microsoft.com/en-us/dotnet/api/system.windows.application.dispatcherunhandledexception?view=windowsdesktop-6.0
+		var st = new StackTrace(e.Exception, true);
+		var frame = st.GetFrame(0);
+
+		if ( frame != null )
+		{
+			var fileName = frame.GetFileName();
+			var methodName = frame.GetMethod()!.Name;
+			var line = frame.GetFileLineNumber();
+			var col = frame.GetFileColumnNumber();
+
+			MessageBox.Show(MainWindow!, $"An Error occured {fileName}.{methodName}->L{line} C{col}\n{e.Exception}\n\nThe Program will be terminated", "Error Occured", MessageBoxButton.OK, MessageBoxImage.Error);
+		}
+		else
+		{
+			MessageBox.Show(MainWindow!, "An Error occured but the StackTrace can't be read\n\nThe Program will be terminated", "Error Occured", MessageBoxButton.OK, MessageBoxImage.Error);
+		}
+
+		Environment.Exit(0);
 	}
 }

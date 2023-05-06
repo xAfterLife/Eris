@@ -59,15 +59,5 @@ namespace ErisAdminPanel.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] appconfig {
-            get {
-                object obj = ResourceManager.GetObject("appconfig", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }

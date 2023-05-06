@@ -2,13 +2,16 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net7.0-windows</TargetFramework>
+		<TargetFramework>net7.0-windows10.0.22621.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<LangVersion>10.0</LangVersion>
 		<UseWPF>true</UseWPF>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<ApplicationIcon>applicationIcon.ico</ApplicationIcon>
+		<PublishSingleFile>true</PublishSingleFile>
 		<StartupObject></StartupObject>
+		<SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+		<IsPublishable>False</IsPublishable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -24,6 +27,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Costura.Fody" Version="5.7.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Fody" Version="6.7.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
 		<PackageReference Include="WPF-UI" Version="2.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
@@ -31,13 +43,15 @@
 
 	<ItemGroup>
 		<None Remove="applicationIcon.ico" />
-		<None Remove="Assets\appconfig.json" />
 		<None Remove="Assets\applicationIcon-1024.png" />
 		<None Remove="Assets\applicationIcon-256.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Resource Include="Assets\appconfig.json" />
+	  <ProjectReference Include="..\ErisLib\ErisLib.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Resource Include="Assets\applicationIcon-1024.png" />
 		<Resource Include="Assets\applicationIcon-256.png" />
 	</ItemGroup>

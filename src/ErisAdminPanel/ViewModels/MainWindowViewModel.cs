@@ -1,15 +1,18 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ErisAdminPanel.Views.Pages;
 using Wpf.Ui.Common;
 using Wpf.Ui.Controls;
 using Wpf.Ui.Controls.Interfaces;
-using Wpf.Ui.Mvvm.Contracts;
 
 namespace ErisAdminPanel.ViewModels;
 
 public partial class MainWindowViewModel : ObservableObject
 {
+	private readonly IServiceProvider _serviceProvider;
+
 	[ObservableProperty]
 	private string _applicationTitle = string.Empty;
 
@@ -24,10 +27,17 @@ public partial class MainWindowViewModel : ObservableObject
 	[ObservableProperty]
 	private ObservableCollection<MenuItem> _trayMenuItems = new();
 
-	public MainWindowViewModel(INavigationService navigationService)
+	public MainWindowViewModel(IServiceProvider serviceProvider)
 	{
+		_serviceProvider = serviceProvider;
 		if ( !_isInitialized )
 			InitializeViewModel();
+	}
+
+	[RelayCommand]
+	public static void CloseProgram()
+	{
+		Environment.Exit(0);
 	}
 
 	private void InitializeViewModel()
@@ -36,7 +46,17 @@ public partial class MainWindowViewModel : ObservableObject
 
 		NavigationItems = new ObservableCollection<INavigationControl> { new NavigationItem { Content = "Home", PageTag = "dashboard", Icon = SymbolRegular.Home24, PageType = typeof(DashboardPage) } };
 
-		NavigationFooter = new ObservableCollection<INavigationControl> { new NavigationItem { Content = "Settings", PageTag = "settings", Icon = SymbolRegular.Settings24, PageType = null } };
+		NavigationFooter = new ObservableCollection<INavigationControl>
+		{
+			new NavigationItem
+			{
+				Content = "Exit",
+				PageTag = "exit",
+				Icon = SymbolRegular.Door28,
+				PageType = null,
+				Command = CloseProgramCommand
+			}
+		};
 
 		TrayMenuItems = new ObservableCollection<MenuItem> { new() { Header = "Home", Tag = "tray_home" } };
 

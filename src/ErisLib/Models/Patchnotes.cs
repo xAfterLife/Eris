@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ErisAdminPanel.Models;
+﻿namespace ErisLib.Models;
 
 [Serializable]
 public class Patchnotes

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
@@ -11,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Wpf.Ui.Mvvm.Contracts;
 using Wpf.Ui.Mvvm.Services;
-using static ErisAdminPanel.Properties.Resources;
 
 namespace ErisAdminPanel;
 
@@ -28,10 +28,11 @@ public partial class App
 	private static readonly IHost Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder()
 												  .ConfigureAppConfiguration(c =>
 												  {
-													  c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location));
-													  c.AddJsonStream(new MemoryStream(appconfig));
+													  c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location) ?? throw new InvalidOperationException());
+													  c.AddJsonFile("appconfig.json", true);
+													  c.Build();
 												  })
-												  .ConfigureServices((context, services) =>
+												  .ConfigureServices((_, services) =>
 												  {
 													  // App Host
 													  services.AddHostedService<ApplicationHostService>();
