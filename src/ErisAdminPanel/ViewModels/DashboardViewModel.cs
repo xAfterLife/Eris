@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
@@ -35,7 +34,7 @@ public partial class DashboardViewModel : ObservableObject, INavigationAware
 		if ( File.Exists(NewsFilePath) )
 			Patchnotes = new ObservableCollection<Patchnotes>(PatchnotesService.ToPatchnotesList(File.ReadAllBytes(NewsFilePath))!);
 		else
-			Patchnotes = new ObservableCollection<Patchnotes>(new []{ new Patchnotes(default!, default!, "", "") });
+			Patchnotes = new ObservableCollection<Patchnotes>(new[] { new Patchnotes(default!, default!, "", "") });
 	}
 
 	public void OnNavigatedTo() {}
@@ -77,6 +76,6 @@ public partial class DashboardViewModel : ObservableObject, INavigationAware
 	[RelayCommand]
 	public void AddNews()
 	{
-		Patchnotes?.Add(new Patchnotes(default!,default!,string.Empty,string.Empty));
+		Patchnotes?.Add(new Patchnotes(default!, default!, string.Empty, string.Empty));
 	}
 }

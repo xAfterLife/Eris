@@ -4,7 +4,7 @@
 ///     Represents a file to be downloaded from a remote location via HTTP.
 /// </summary>
 public readonly struct HttpFile
-{ 
+{
 	public long Size { get; init; }
 	public string Uri { get; init; }
 	public string FileName { get; init; }

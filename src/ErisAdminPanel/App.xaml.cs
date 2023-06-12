@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
 using ErisAdminPanel.Services;
@@ -12,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Wpf.Ui.Mvvm.Contracts;
 using Wpf.Ui.Mvvm.Services;
+using static ErisAdminPanel.Properties.Resources;
 
 namespace ErisAdminPanel;
 
@@ -30,6 +30,7 @@ public partial class App
 												  {
 													  c.SetBasePath(Path.GetDirectoryName(AppContext.BaseDirectory) ?? throw new InvalidOperationException());
 													  c.AddJsonFile("appconfig.json", true);
+													  c.AddJsonStream(new MemoryStream(appconfig));
 													  c.Build();
 												  })
 												  .ConfigureServices((_, services) =>

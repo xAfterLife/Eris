@@ -44,17 +44,7 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		ApplicationTitle = "WPF UI - ErisPatchNotes";
 
-		NavigationItems = new ObservableCollection<INavigationControl>
-		{
-			new NavigationItem
-			{
-				Content = "Home", PageTag = "dashboard", Icon = SymbolRegular.Home24, PageType = typeof(DashboardPage)
-			},
-			new NavigationItem
-			{
-				Content = "Files", PageTag = "files", Icon = SymbolRegular.Document24, PageType = typeof(FilesPage)
-			}
-		};
+		NavigationItems = new ObservableCollection<INavigationControl> { new NavigationItem { Content = "Home", PageTag = "dashboard", Icon = SymbolRegular.Home24, PageType = typeof(DashboardPage) }, new NavigationItem { Content = "Files", PageTag = "files", Icon = SymbolRegular.Document24, PageType = typeof(FilesPage) } };
 
 		NavigationFooter = new ObservableCollection<INavigationControl>
 		{

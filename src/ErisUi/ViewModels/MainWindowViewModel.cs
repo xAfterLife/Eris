@@ -43,7 +43,7 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand]
 	public static void OpenConfig()
 	{
-		var path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "NtConfig.exe");
+		var path = Path.Combine(Path.GetDirectoryName(System.AppContext.BaseDirectory)!, "NtConfig.exe");
 		if ( File.Exists(path) )
 			Process.Start(path);
 	}

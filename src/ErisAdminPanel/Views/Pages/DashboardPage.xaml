@@ -33,11 +33,14 @@
                             <ui:Card Margin="4">
                                 <ui:Card.Content>
                                     <StackPanel>
-                                        <ui:TextBox PlaceholderText="Title" AcceptsReturn="True" Icon="TextAddT24" Text="{Binding Title}"
+                                        <ui:TextBox PlaceholderText="Title" AcceptsReturn="True" Icon="TextAddT24"
+                                                    Text="{Binding Title}"
                                                     Background="#BB343434" />
-                                        <ui:TextBox PlaceholderText="NavigationUri" Icon="Link24" Text="{Binding NavigationUri}"
+                                        <ui:TextBox PlaceholderText="NavigationUri" Icon="Link24"
+                                                    Text="{Binding NavigationUri}"
                                                     Background="#BB343434" />
-                                        <ui:TextBox PlaceholderText="BannerUri" Icon="Link24" Text="{Binding BannerUri}"
+                                        <ui:TextBox PlaceholderText="BannerUri" Icon="Link24"
+                                                    Text="{Binding BannerUri}"
                                                     Background="#BB343434" />
                                     </StackPanel>
                                 </ui:Card.Content>
@@ -49,7 +52,8 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <ui:Button Margin="4" HorizontalAlignment="Right" Icon="AddCircle32" Command="{Binding ViewModel.AddNewsCommand}" Content="New Patchnote"/>
+                <ui:Button Margin="4" HorizontalAlignment="Right" Icon="AddCircle32"
+                           Command="{Binding ViewModel.AddNewsCommand}" Content="New Patchnote" />
             </StackPanel>
         </ScrollViewer>
 
@@ -85,14 +89,14 @@
                     Grid.Row="1" Margin="10">
             <ui:Button Margin="2, 0" PressedBackground="#53A0E8" MouseOverBackground="#80b9ee"
                        Command="{Binding ViewModel.SelectDirectoryCommand}" Icon="Folder24"
-                       Content="Select Directory"/>
+                       Content="Select Directory" />
             <ui:Button Margin="2, 0" PressedBackground="#53A0E8" MouseOverBackground="#80b9ee"
                        Command="{Binding ViewModel.OpenInExplorerCommand}" Icon="Folder24"
-                       Content="Open in Explorer"/>
+                       Content="Open in Explorer" />
             <ui:Button Margin="2, 0" Background="{Binding ViewModel.WriteFileBackgroundColor}"
                        PressedBackground="#53A0E8" MouseOverBackground="#80b9ee"
                        Command="{Binding ViewModel.WriteFileCommand}" Icon="Pen24"
-                       Content="Write File"/>
+                       Content="Write File" />
         </StackPanel>
     </Grid>
 </ui:UiPage>
