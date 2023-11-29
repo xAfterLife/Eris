@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>10.0</LangVersion>
     <UseWPF>true</UseWPF>
@@ -11,24 +11,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="WPF-UI" Version="2.0.3" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+    <Content Include="applicationIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="applicationIcon.ico" />
-    <None Remove="Assets\123321.png" />
+    <PackageReference Include="WPF-UI" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2"/>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Assets\applicationIcon-1024.png" />
     <None Remove="Assets\applicationIcon-256.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="applicationIcon.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Assets\123321.png" />
     <Resource Include="Assets\applicationIcon-1024.png" />
     <Resource Include="Assets\applicationIcon-256.png" />
   </ItemGroup>
