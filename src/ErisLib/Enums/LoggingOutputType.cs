@@ -2,8 +2,8 @@
 
 public enum LoggingOutputType
 {
-	None,
-	Console,
-	LogFile,
-	All
+    None,
+    Console,
+    LogFile,
+    All
 }

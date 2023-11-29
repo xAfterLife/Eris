@@ -2,8 +2,8 @@
 
 public enum LoggingSeverity
 {
-	Debug = ConsoleColor.DarkBlue,
-	Info = ConsoleColor.DarkGreen,
-	Warning = ConsoleColor.DarkYellow,
-	Error = ConsoleColor.DarkRed
+    Debug = ConsoleColor.DarkBlue,
+    Info = ConsoleColor.DarkGreen,
+    Warning = ConsoleColor.DarkYellow,
+    Error = ConsoleColor.DarkRed
 }

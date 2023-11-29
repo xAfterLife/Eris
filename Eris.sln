@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErisUi", "src\ErisUi\ErisUi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErisAdminPanel", "src\ErisAdminPanel\ErisAdminPanel.csproj", "{D75BD1D1-F479-4FF4-A133-E6E40C705910}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErisUpdate", "ErisUpdate\ErisUpdate.csproj", "{FC720ECE-E76B-4A79-8137-3649458A2DC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErisUpdate", "src\ErisUpdate\ErisUpdate.csproj", "{FC720ECE-E76B-4A79-8137-3649458A2DC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

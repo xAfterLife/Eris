@@ -1,28 +1,24 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using ErisUi.ViewModels;
-using Wpf.Ui.Controls.Interfaces;
-using Wpf.Ui.Mvvm.Contracts;
+using ErisUpdate.ViewModels;
 
-namespace ErisUi.Views.Windows;
+namespace ErisUpdate.Views.Windows;
 
 /// <summary>
 ///     Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : INavigationWindow
+public partial class MainWindow
 {
     public MainWindowViewModel ViewModel { get; }
 
-    public MainWindow(MainWindowViewModel viewModel, IPageService pageService, INavigationService navigationService)
+    public MainWindow(MainWindowViewModel viewModel)
     {
         ViewModel = viewModel;
         DataContext = this;
 
         InitializeComponent();
-        SetPageService(pageService);
-
-        navigationService.SetNavigationControl(RootNavigation);
     }
 
     /// <summary>
@@ -37,26 +33,6 @@ public partial class MainWindow : INavigationWindow
     }
 
 #region INavigationWindow methods
-
-    public Frame GetFrame()
-    {
-        return RootFrame;
-    }
-
-    public INavigation GetNavigation()
-    {
-        return RootNavigation;
-    }
-
-    public bool Navigate(Type pageType)
-    {
-        return RootNavigation.Navigate(pageType);
-    }
-
-    public void SetPageService(IPageService pageService)
-    {
-        RootNavigation.PageService = pageService;
-    }
 
     public void ShowWindow()
     {

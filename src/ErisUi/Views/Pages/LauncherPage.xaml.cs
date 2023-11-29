@@ -8,12 +8,12 @@ namespace ErisUi.Views.Pages;
 /// </summary>
 public partial class LauncherPage : INavigableView<LauncherViewModel>
 {
-	public LauncherPage(LauncherViewModel viewModel)
-	{
-		ViewModel = viewModel;
+    public LauncherPage(LauncherViewModel viewModel)
+    {
+        ViewModel = viewModel;
 
-		InitializeComponent();
-	}
+        InitializeComponent();
+    }
 
-	public LauncherViewModel ViewModel { get; }
+    public LauncherViewModel ViewModel { get; }
 }

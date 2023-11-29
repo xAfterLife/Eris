@@ -16,66 +16,66 @@ namespace ErisAdminPanel.ViewModels;
 
 public partial class DashboardViewModel : ObservableObject, INavigationAware
 {
-	private readonly Config _configuration;
+    private readonly Config _configuration;
 
-	[ObservableProperty]
-	private string _newsFilePath;
+    [ObservableProperty]
+    private string _newsFilePath;
 
-	[ObservableProperty]
-	private string _writeFileBackgroundColor = "#393939";
+    [ObservableProperty]
+    private string _writeFileBackgroundColor = "#393939";
 
-	public ObservableCollection<Patchnotes>? Patchnotes { get; set; }
+    public ObservableCollection<Patchnotes>? Patchnotes { get; set; }
 
-	public DashboardViewModel(IConfiguration configuration)
-	{
-		_configuration = configuration.Get<Config>() ?? new Config { PatchnotesUri = @"C:\" };
-		NewsFilePath = _configuration.PatchnotesUri!;
+    public DashboardViewModel(IConfiguration configuration)
+    {
+        _configuration = configuration.Get<Config>() ?? new Config { PatchnotesUri = @"C:\" };
+        NewsFilePath = _configuration.PatchnotesUri!;
 
-		if ( File.Exists(NewsFilePath) )
-			Patchnotes = new ObservableCollection<Patchnotes>(PatchnotesService.ToPatchnotesList(File.ReadAllBytes(NewsFilePath))!);
-		else
-			Patchnotes = new ObservableCollection<Patchnotes>(new[] { new Patchnotes(default!, default!, "", "") });
-	}
+        if ( File.Exists(NewsFilePath) )
+            Patchnotes = new ObservableCollection<Patchnotes>(PatchnotesService.ToPatchnotesList(File.ReadAllBytes(NewsFilePath))!);
+        else
+            Patchnotes = new ObservableCollection<Patchnotes>(new[] { new Patchnotes(default!, default!, "", "") });
+    }
 
-	public void OnNavigatedTo() {}
+    public void OnNavigatedTo() {}
 
-	public void OnNavigatedFrom() {}
+    public void OnNavigatedFrom() {}
 
-	[RelayCommand]
-	public void OpenInExplorer()
-	{
-		Process.Start("explorer.exe", $"{Path.GetDirectoryName(NewsFilePath)}");
-	}
+    [RelayCommand]
+    public void OpenInExplorer()
+    {
+        Process.Start("explorer.exe", $"{Path.GetDirectoryName(NewsFilePath)}");
+    }
 
-	[RelayCommand]
-	public void SelectDirectory()
-	{
-		var dialog = new VistaSaveFileDialog { Title = @"Select the Folder the File will be Set to", FileName = "PatchNotes.json", OverwritePrompt = false };
+    [RelayCommand]
+    public void SelectDirectory()
+    {
+        var dialog = new VistaSaveFileDialog { Title = @"Select the Folder the File will be Set to", FileName = "PatchNotes.json", OverwritePrompt = false };
 
-		if ( dialog.ShowDialog() != true )
-			return;
+        if ( dialog.ShowDialog() != true )
+            return;
 
-		NewsFilePath = dialog.FileName;
-		_configuration.PatchnotesUri = NewsFilePath;
+        NewsFilePath = dialog.FileName;
+        _configuration.PatchnotesUri = NewsFilePath;
 
-		File.WriteAllText("appconfig.json", JsonSerializer.Serialize(_configuration));
-	}
+        File.WriteAllText("appconfig.json", JsonSerializer.Serialize(_configuration));
+    }
 
-	[RelayCommand]
-	public void WriteFile()
-	{
-		File.WriteAllText(NewsFilePath, Patchnotes?.ToJson());
-		WriteFileBackgroundColor = "#107020";
-		_ = Task.Run(async () =>
-		{
-			await Task.Delay(1000);
-			WriteFileBackgroundColor = "#393939";
-		});
-	}
+    [RelayCommand]
+    public void WriteFile()
+    {
+        File.WriteAllText(NewsFilePath, Patchnotes?.ToJson());
+        WriteFileBackgroundColor = "#107020";
+        _ = Task.Run(async () =>
+        {
+            await Task.Delay(1000);
+            WriteFileBackgroundColor = "#393939";
+        });
+    }
 
-	[RelayCommand]
-	public void AddNews()
-	{
-		Patchnotes?.Add(new Patchnotes(default!, default!, string.Empty, string.Empty));
-	}
+    [RelayCommand]
+    public void AddNews()
+    {
+        Patchnotes?.Add(new Patchnotes(default!, default!, string.Empty, string.Empty));
+    }
 }

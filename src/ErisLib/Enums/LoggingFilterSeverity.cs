@@ -2,9 +2,9 @@
 
 public enum LoggingFilterSeverity
 {
-	All,
-	NoDebug,
-	Extended,
-	Production,
-	None
+    All,
+    NoDebug,
+    Extended,
+    Production,
+    None
 }

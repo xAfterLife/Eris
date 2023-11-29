@@ -1,0 +1,26 @@
+﻿<ui:UiWindow
+    x:Class="ErisUpdate.Views.Windows.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ErisUpdate.Views.Windows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Title="{Binding ViewModel.ApplicationTitle, Mode=OneWay}"
+    Width="1128"
+    Height="512"
+    AllowsTransparency="True"
+    WindowStyle="None"
+    ResizeMode="NoResize"
+    d:DataContext="{d:DesignInstance local:MainWindow,
+                                     IsDesignTimeCreatable=True}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    ExtendsContentIntoTitleBar="True"
+    WindowBackdropType="Mica"
+    WindowCornerPreference="Round"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <ui:UiWindow.Background>
+        <ImageBrush ImageSource="pack://application:,,,/Assets/123321.png" Opacity="{Binding ViewModel.WindowOpacity}"/>
+    </ui:UiWindow.Background>
+</ui:UiWindow>

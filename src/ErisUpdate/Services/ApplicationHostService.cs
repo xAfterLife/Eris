@@ -3,12 +3,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using ErisUi.Views.Pages;
-using ErisUi.Views.Windows;
+using ErisUpdate.Views.Windows;
 using Microsoft.Extensions.Hosting;
 using Wpf.Ui.Mvvm.Contracts;
 
-namespace ErisUi.Services;
+namespace ErisUpdate.Services;
 
 /// <summary>
 ///     Managed host of the application.
@@ -16,7 +15,7 @@ namespace ErisUi.Services;
 public class ApplicationHostService : IHostedService
 {
     private readonly IServiceProvider _serviceProvider;
-    private INavigationWindow? _navigationWindow;
+    private INavigationWindow _navigationWindow;
 
     public ApplicationHostService(IServiceProvider serviceProvider)
     {
@@ -50,10 +49,8 @@ public class ApplicationHostService : IHostedService
 
         if ( !Application.Current.Windows.OfType<MainWindow>().Any() )
         {
-            _navigationWindow = (_serviceProvider.GetService(typeof(INavigationWindow)) as INavigationWindow)!;
-            _navigationWindow!.ShowWindow();
-
-            _navigationWindow.Navigate(typeof(LauncherPage));
+            var mainWindow = _serviceProvider.GetService(typeof(MainWindow)) as MainWindow;
+            mainWindow?.Show();
         }
 
         await Task.CompletedTask;

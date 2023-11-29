@@ -2,7 +2,7 @@
 using System.Windows;
 using Wpf.Ui.Mvvm.Contracts;
 
-namespace ErisUi.Services;
+namespace ErisUpdate.Services;
 
 /// <summary>
 ///     Service that provides pages for navigation.

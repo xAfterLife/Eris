@@ -8,12 +8,12 @@ namespace ErisAdminPanel.Views.Pages;
 /// </summary>
 public partial class DashboardPage : INavigableView<DashboardViewModel>
 {
-	public DashboardPage(DashboardViewModel viewModel)
-	{
-		ViewModel = viewModel;
+    public DashboardPage(DashboardViewModel viewModel)
+    {
+        ViewModel = viewModel;
 
-		InitializeComponent();
-	}
+        InitializeComponent();
+    }
 
-	public DashboardViewModel ViewModel { get; }
+    public DashboardViewModel ViewModel { get; }
 }

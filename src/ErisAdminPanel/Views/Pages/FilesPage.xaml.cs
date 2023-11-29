@@ -8,12 +8,12 @@ namespace ErisAdminPanel.Views.Pages;
 /// </summary>
 public partial class FilesPage : INavigableView<FilesViewModel>
 {
-	public FilesPage(FilesViewModel viewModel)
-	{
-		ViewModel = viewModel;
+    public FilesPage(FilesViewModel viewModel)
+    {
+        ViewModel = viewModel;
 
-		InitializeComponent();
-	}
+        InitializeComponent();
+    }
 
-	public FilesViewModel ViewModel { get; }
+    public FilesViewModel ViewModel { get; }
 }
