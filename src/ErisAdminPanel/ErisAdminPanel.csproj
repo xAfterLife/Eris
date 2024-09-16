@@ -38,7 +38,7 @@
 		<PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
 		<PackageReference Include="WPF-UI" Version="3.0.5" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.1" />
 	</ItemGroup>
 
 	<ItemGroup>
